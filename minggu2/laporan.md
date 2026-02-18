@@ -1,4 +1,4 @@
-# Laporan Praktikum System Operassi Jobsheet 2
+# Laporan Praktikum System Operasi Jobsheet 2
 
 <h4>Nama : Salsabila Widyadhana<h4></h4>
 
@@ -88,6 +88,7 @@ Block device ditandai dengan huruf b di awal baris perizinan dan berfungsi untuk
 # Praktikum 2.8 - Membuat Workspace Praktikum
 
       
+
 
 
 
