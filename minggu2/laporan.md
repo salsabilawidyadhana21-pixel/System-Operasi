@@ -44,6 +44,44 @@ heksadesimal), nama driver/modul kernel, dan deskripsi singkat fungsinya.
 Nama Driver/Modul Kernel: Driver yang digunakan adalah e1000.
 
 Deskripsi Fungsi: Perangkat ini adalah Intel Corporation 82540EM Gigabit Ethernet Controller. Fungsinya adalah sebagai kartu jaringan (NIC) yang memungkinkan mesin virtual tersebut terhubung ke jaringan lokal atau internet dengan kecepatan hingga Gigabit.
+# Praktikum 2.3 — Identifikasi Storage dan Filesystem
+### Langkah-langkah :
+1. Lihat daftar disk/partisi:
+<img width="1920" height="1200" alt="Cuplikan layar 2026-02-18 102644" src="https://github.com/user-attachments/assets/fc3eaa99-8880-4496-bef9-7b284964bf5a" />
+2. Tampilkan UUID dan tipe filesystem:
+   <img width="1920" height="1200" alt="Cuplikan layar 2026-02-18 102729" src="https://github.com/user-attachments/assets/08e1e8b1-96aa-43f9-9443-9ada9a72c4d1" />
+3. Lihat mount point untuk root filesystem:
+   <img width="1920" height="1200" alt="Cuplikan layar 2026-02-18 102834" src="https://github.com/user-attachments/assets/ce7c020d-ab2d-4253-9fe1-fff9df90a566" />
+# Praktikum 2.4 — Melihat Modul Aktif dan Informasinya
+### Langkah-langkah : 
+1. Cek versi kernel:
+   <img width="1319" height="879" alt="Cuplikan layar 2026-02-18 130029" src="https://github.com/user-attachments/assets/304fb0b6-b5aa-41f0-8491-3b6265d577ff" />
+2. Tampilkan daftar modul aktif:
+<img width="1313" height="881" alt="Cuplikan layar 2026-02-18 130432" src="https://github.com/user-attachments/assets/5d32078f-4608-41d8-bebd-7c3a346e26a7" />
+3. Pilih salah satu modul (contoh aman: loop) dan lihat detailnya:
+   <img width="1302" height="842" alt="Cuplikan layar 2026-02-18 130715" src="https://github.com/user-attachments/assets/bcb9ad69-14d7-4afe-a4b1-5717a3c519f4" />
+# Praktikum 2.5 — Konfigurasi Auto-load dan Blacklist
+### Langkah demo (gunakan modul aman, contoh loop):
+1. Buat file auto-load:
+<img width="1310" height="868" alt="Cuplikan layar 2026-02-18 131845" src="https://github.com/user-attachments/assets/63049ccf-c9f3-4993-af6f-29784727dafa" />
+2. Simulasikan verifikasi (tanpa reboot) dengan memastikan modul sudah aktif:
+<img width="1323" height="897" alt="Cuplikan layar 2026-02-18 132614" src="https://github.com/user-attachments/assets/d265573f-bfa9-4783-9017-59bff8b6cf46" />
+# Praktikum 2.6 - Mengenali Block vs Character Device 
+
+### Langkah-langkah :
+1. Lihat detail salah satu disk (sesuaikan dengan perangkat Anda, misal sda):
+   <img width="1324" height="878" alt="Cuplikan layar 2026-02-18 133022" src="https://github.com/user-attachments/assets/9b14a6d9-519f-4b69-b228-1acdedc81bef" />
+2. Lihat detail device terminal:
+   <img width="1315" height="846" alt="Cuplikan layar 2026-02-18 133248" src="https://github.com/user-attachments/assets/f81f39e0-28b2-4fa4-87b5-441a0dff8a41" />
+3. Lihat disk dan partisi untuk mengaitkan dengan /dev:
+<img width="1315" height="846" alt="Cuplikan layar 2026-02-18 133248" src="https://github.com/user-attachments/assets/d5e619b1-85bd-47d4-acee-ba0db62be8f4" />
+### Latihan 2.3
+
+Dari output ls -l, jelaskan perbedaan penanda file untuk block device dan
+character device. (Hint: karakter pertama pada permission string)
+
+
       
+
 
 
