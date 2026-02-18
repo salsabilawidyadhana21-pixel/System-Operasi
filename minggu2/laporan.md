@@ -78,10 +78,21 @@ Deskripsi Fungsi: Perangkat ini adalah Intel Corporation 82540EM Gigabit Etherne
 ### Latihan 2.3
 
 Dari output ls -l, jelaskan perbedaan penanda file untuk block device dan
-character device. (Hint: karakter pertama pada permission string)
+character device. (Hint: karakter pertama pada permission string).
+### Jawaban : 
+Block device ditandai dengan huruf b di awal baris perizinan dan berfungsi untuk mengelola data dalam satuan blok besar seperti hard disk. Sementara itu, character device ditandai dengan huruf c dan berfungsi untuk mengirimkan data satu per satu karakter seperti keyboard atau terminal.
+# Praktikum 2.7 - Melihat Informasi Udev
+### Langkah-langkah : 
+1. Cek atribut udev untuk disk:
+<img width="1342" height="871" alt="Cuplikan layar 2026-02-18 135033" src="https://github.com/user-attachments/assets/4af50e74-4948-4f62-b1f1-331bde4fda5f" />
+2. (Opsional) monitor event udev (jalankan, lalu colok/lepas USB pada mesin
+fisik):
+# Praktikum 2.8 - Membuat Workspace Praktikum
+### Langkah-langkah :
 
 
       
+
 
 
 
