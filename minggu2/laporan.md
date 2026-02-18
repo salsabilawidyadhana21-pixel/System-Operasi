@@ -85,13 +85,10 @@ Block device ditandai dengan huruf b di awal baris perizinan dan berfungsi untuk
 ### Langkah-langkah : 
 1. Cek atribut udev untuk disk:
 <img width="1342" height="871" alt="Cuplikan layar 2026-02-18 135033" src="https://github.com/user-attachments/assets/4af50e74-4948-4f62-b1f1-331bde4fda5f" />
-2. (Opsional) monitor event udev (jalankan, lalu colok/lepas USB pada mesin
-fisik):
 # Praktikum 2.8 - Membuat Workspace Praktikum
-### Langkah-langkah :
-
 
       
+
 
 
 
