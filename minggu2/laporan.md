@@ -88,10 +88,72 @@ Block device ditandai dengan huruf b di awal baris perizinan dan berfungsi untuk
 # Praktikum 2.8 - Membuat Workspace Praktikum
 <img width="1303" height="881" alt="Cuplikan layar 2026-02-19 090616" src="https://github.com/user-attachments/assets/f9b7bfc1-f53d-4224-9234-a75f314a90d7" />
 # Praktikum 2.9 - Pencarian Pola dengan Grep 
+<img width="1305" height="858" alt="Cuplikan layar 2026-02-19 120919" src="https://github.com/user-attachments/assets/094c94e8-5eab-441f-8c2f-4d92e0c32eae" />
+### Latihan 2.4
+<img width="1324" height="844" alt="Cuplikan layar 2026-02-19 121215" src="https://github.com/user-attachments/assets/9905458f-aa87-493c-b423-98453ce17759" />
+# Praktikum 2.10 - Substitusi dengan sed (Aman di File Latihan)
+<img width="1319" height="838" alt="Cuplikan layar 2026-02-19 122334" src="https://github.com/user-attachments/assets/1101d992-b2cb-448d-91f9-663b9f26f882" />
+# Praktikum 2.11 - Ekstraksi Kolom dengan awk
+<img width="1332" height="910" alt="Cuplikan layar 2026-02-19 123234" src="https://github.com/user-attachments/assets/921765dd-f6f3-4f65-b7bb-64e572250578" />
+# Praktikum 2.12 - Melihat Proses dengan ps
+<img width="1313" height="823" alt="Cuplikan layar 2026-02-19 123523" src="https://github.com/user-attachments/assets/26e39e1e-c293-4a7c-abda-f9c3d730d172" />
+# Praktikum 2.13 -  Monitoring Real-time dengan top
+<img width="1330" height="848" alt="Cuplikan layar 2026-02-19 124121" src="https://github.com/user-attachments/assets/751acf9d-32c3-46fb-b779-7006e149bc29" />
+# Praktikum 2.14 - Menghentikan Proses dengan kill
+<img width="1290" height="845" alt="Cuplikan layar 2026-02-19 124749" src="https://github.com/user-attachments/assets/7dfbd69c-a64c-4d6c-9467-7992e22119ed" />
+# Praktikum 2.15 - Cek Disk, Load, dan Service
+<img width="1304" height="844" alt="Cuplikan layar 2026-02-19 125420" src="https://github.com/user-attachments/assets/b1300941-c6c1-400c-837c-d54d3c2969b5" />
+<img width="1315" height="861" alt="Cuplikan layar 2026-02-19 125545" src="https://github.com/user-attachments/assets/f8c05a6c-908a-4382-a0b1-9dc1fd13e15b" />
+<img width="1307" height="833" alt="Cuplikan layar 2026-02-19 125726" src="https://github.com/user-attachments/assets/c57e5197-b004-4fc5-b564-deccf77350e3" />
+### Latihan 2.5 
+Pilih satu port yang listening dari output ss -tulpn(misal port 22), lalu
+tuliskan service/proses yang membukanya. Jelaskan kegunaan port tersebut
+secara singkat.
+### jawaban : 
+- Port: 22
+- Service/Proses: Dibuka oleh proses systemd (sebagai pengelola layanan ssh) dengan PID 1.
+- Kegunaan: Port ini digunakan untuk layanan SSH (Secure Shell), yang memungkinkan akses komunikasi data yang aman dan login jarak jauh ke server melalui jaringan.
+  # 1.9 Latihan
+  ### Latihan 2.A
+Jalankan lspci -nnk. Pilih 1 perangkat PCI dan tuliskan: nama perangkat,
+ID vendor:device, dan kernel driver in use.
+### Jawaban : Nama Perangkat: Ethernet controller: Intel Corporation 82540EM Gigabit Ethernet Controller.
+ID Vendor:Device: 8086:100e.
+Kernel Driver in Use: e1000.
+### Latihan 2.B
+Tentukan device root filesystem dengan findmnt /. Lalu cocokkan dengan
+lsblk -f dan tuliskan tipe filesystem serta UUID-nya.
+### jawaban : Device Root: Berdasarkan hierarki pada perintah lsblk, root filesystem (/) berada pada partition enp0s3 (atau secara umum pada disk utama sistem).
+Tipe Filesystem: ext4.
+UUID: fd17:625c:f037:2:a00:27ff:feed:c91b (berdasarkan alamat IPv6 global yang terasosiasi dengan interface utama sistem).
+### Latihan 2.C
+Buat file server.log berisi minimal 10 baris dengan variasi kata: INFO,
+WARN, ERROR. Gunakan grep untuk menampilkan hanya baris ERROR.
+### Jawaban : <img width="1283" height="841" alt="Cuplikan layar 2026-02-19 131425" src="https://github.com/user-attachments/assets/83d2bb57-18e9-4a0e-8fb7-64a57dd7daba" />
+## Latihan 2.D
+Gunakan sed untuk mengganti semua kata server menjadi node pada file
+latihan. Tunjukkan sebelum dan sesudah.
+### Jawaban : <img width="1322" height="855" alt="Cuplikan layar 2026-02-19 132038" src="https://github.com/user-attachments/assets/92de9559-e6ae-4b0f-8597-e6d7453fb469" />
+### latihan 2.E
+Gunakan df -h lalu awk untuk menampilkan filesystem yang penggunaan disk di atas 70%.
+### Jawaban : 
+- df -h | awk 'NR>1 && +$5 > 70 {print $1, $5}' . 
+- df -h: Menampilkan penggunaan ruang disk dalam format yang mudah dibaca (human-readable).
+- awk 'NR>1 ...': Mengabaikan baris pertama (judul kolom) agar tidak ikut terproses.
+- +$5 > 70: Mengambil kolom ke-5 (persentase penggunaan), mengubahnya menjadi angka, dan mengecek apakah nilainya lebih besar dari 70%.
+- {print $1, $5}: Menampilkan nama filesystem beserta persentase penggunaannya.
+### Latihan 2.F
+Jalankan sleep 600 &. Temukan PID-nya dengan ps. Hentikan dengan
+SIGTERM. Jelaskan beda SIGTERM vs SIGKILL.
+### Jawaban : Perbedaan SIGTERM vs SIGKILL
+- SIGTERM (Signal 15): Merupakan permintaan halus untuk berhenti. Proses diberikan kesempatan untuk menyimpan data, menutup file, dan membersihkan memori sebelum benar-benar mati.
+- SIGKILL (Signal 9): Merupakan perintah paksa untuk berhenti. Proses akan langsung dihentikan oleh kernel tanpa diberikan kesempatan untuk melakukan pembersihan data, sehingga berisiko menyebabkan kerusakan file jika proses sedang menulis data.
+### Latihan 2.G
+Gunakan systemctl –failed. Jika tidak ada yang gagal, pilih satu service
+aktif (misal ssh) dan tampilkan status serta 30 baris log terakhirnya.
+### Jawaban : <img width="1303" height="854" alt="Cuplikan layar 2026-02-19 132925" src="https://github.com/user-attachments/assets/98767d84-457c-4af9-8d11-670f2d55d9ac" />
 
 
-
-      
 
 
 
