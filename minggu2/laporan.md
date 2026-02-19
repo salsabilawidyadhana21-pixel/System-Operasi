@@ -86,8 +86,13 @@ Block device ditandai dengan huruf b di awal baris perizinan dan berfungsi untuk
 1. Cek atribut udev untuk disk:
 <img width="1342" height="871" alt="Cuplikan layar 2026-02-18 135033" src="https://github.com/user-attachments/assets/4af50e74-4948-4f62-b1f1-331bde4fda5f" />
 # Praktikum 2.8 - Membuat Workspace Praktikum
+<img width="1303" height="881" alt="Cuplikan layar 2026-02-19 090616" src="https://github.com/user-attachments/assets/f9b7bfc1-f53d-4224-9234-a75f314a90d7" />
+# Praktikum 2.9 - Pencarian Pola dengan Grep 
+
+
 
       
+
 
 
 
