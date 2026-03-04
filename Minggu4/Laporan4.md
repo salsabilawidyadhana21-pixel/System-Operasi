@@ -40,9 +40,10 @@ $ ls -l B
 
 $ rmdir B/F B
 
-$ ls -l B 
-```
+$ ls -l B
+
 #### Mengapa muncul pesan error : karena perintah rmdir hanya dapat digunakan untuk menghapus direktori yang benar-benar kosong, dan ketika menjalankan $ rmdir B, akan muncul error jika di dalam direktori B masih terdapat subdirektori atau file (seperti subdirektori F). Dan pesan error itu muncul untuk mencegah penghapusan data secara tidak sengaja.
+```
 
 #### 5.Navigasi direktori dengan intruksi cd untuk pindah dari satu direktori ke direktori lain. 
 ```
@@ -65,8 +66,14 @@ $ pwd
 $ cd /<user/C
 
 $ pwd
-```
+
 #### Muncul error karena Path Tidak Ditemukan, Jika direktori tujuan tidak ada atau path yang dimasukkan salah, Linux akan memberikan pesan error "No such file or directory".
+```
+<img width="643" height="183" alt="image" src="https://github.com/user-attachments/assets/eea95afd-952e-45f0-ad94-b346a683d7dc" />
+<img width="656" height="248" alt="image" src="https://github.com/user-attachments/assets/f57ea9eb-ace4-4215-995d-de172db985f5" />
+<img width="647" height="114" alt="image" src="https://github.com/user-attachments/assets/429d8eac-ffb0-46af-90b7-ee61e3b07933" />
+<img width="650" height="261" alt="image" src="https://github.com/user-attachments/assets/dfd73287-ade6-4de6-8086-79ef068b3dca" />
+
 
 ## Percobaan 2 : Manipulasi File
 
@@ -88,6 +95,9 @@ $ cp contoh contoh1 A/D
 
 $ ls -l A/D
 ```
+<img width="638" height="204" alt="image" src="https://github.com/user-attachments/assets/95e32247-ecb6-45ba-bdb6-a1e42c58551b" />
+<img width="646" height="117" alt="image" src="https://github.com/user-attachments/assets/c0814585-e976-4a11-ae8d-d05f60ae167f" />
+
 #### 2. Perintah mv untuk memindah file
 ```
 $ mv contoh contoh2
@@ -102,6 +112,12 @@ $ mv contoh contoh1 C
 
 $ ls -l C 
 ```
+<img width="640" height="190" alt="image" src="https://github.com/user-attachments/assets/ad2f93b8-d494-4681-9760-c6359137c7df" />
+<img width="639" height="102" alt="image" src="https://github.com/user-attachments/assets/c919c402-0ccc-4510-b8f8-d8ad216a150f" />
+
+
+
+
 ## Percobaan 3 : Symbolic Link 
 
 #### 1. Membuat Shortcut (file link)
@@ -235,6 +251,7 @@ rm work
 rm -rf play
 ```
 <img width="647" height="85" alt="image" src="https://github.com/user-attachments/assets/8589c602-a735-4bf9-9216-23f47fecab3b" />
+
 
 
 
