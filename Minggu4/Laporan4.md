@@ -115,8 +115,15 @@ $ ls -l C
 <img width="640" height="190" alt="image" src="https://github.com/user-attachments/assets/ad2f93b8-d494-4681-9760-c6359137c7df" />
 <img width="639" height="102" alt="image" src="https://github.com/user-attachments/assets/c919c402-0ccc-4510-b8f8-d8ad216a150f" />
 
-
-
+#### 3.Perintah rm untuk menghapus file 
+```
+$ rm contoh2 
+$ ls -l 
+$ rm -i contoh
+$ rm -rf A C 
+$ ls -l
+```
+<img width="655" height="345" alt="image" src="https://github.com/user-attachments/assets/16e2b1fb-aac2-40aa-b087-573ddf19dcbc" />
 
 ## Percobaan 3 : Symbolic Link 
 
@@ -138,6 +145,9 @@ $ ls -l bye.txt
 
 $ cat bye.txt 
 ```
+<img width="647" height="326" alt="image" src="https://github.com/user-attachments/assets/ebab287b-fdfb-49db-b639-5da6c8cc4183" />
+<img width="647" height="102" alt="image" src="https://github.com/user-attachments/assets/3c3767e5-42d9-4fcf-a131-0f750cfa7777" />
+
 ## Percobaan 4 : Melihat isi File 
 ```
 $ ls -l
@@ -146,6 +156,8 @@ $ file halo.txt
 
 $ file bye.txt
 ```
+<img width="642" height="200" alt="image" src="https://github.com/user-attachments/assets/bb1ec887-17e8-4c91-8713-65c14a9b2039" />
+
 ## Percobaan 5 : Mencari file 
 
 #### 1. Perintah find 
@@ -251,6 +263,7 @@ rm work
 rm -rf play
 ```
 <img width="647" height="85" alt="image" src="https://github.com/user-attachments/assets/8589c602-a735-4bf9-9216-23f47fecab3b" />
+
 
 
 
