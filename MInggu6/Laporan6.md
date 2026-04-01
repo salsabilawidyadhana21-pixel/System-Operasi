@@ -7,6 +7,7 @@
 ## Praktikum 6.1 — Melihat Proses dan Thread
 
 1. ps aux  :<img width="650" height="412" alt="image" src="https://github.com/user-attachments/assets/16801297-d3a7-4478-b58e-ba606cf8f8b3" />
+
 2. ps aux -L : <img width="647" height="407" alt="image" src="https://github.com/user-attachments/assets/02487fbd-7b5c-4796-9494-5417d0239808" />
 
 3. echo $$ : <img width="612" height="97" alt="Cuplikan layar 2026-04-01 071953" src="https://github.com/user-attachments/assets/23763364-ef9a-409d-b52e-f34e9243ef9f" />
@@ -23,7 +24,7 @@ Jalankan ps aux dan amati outputnya:
    - PID Terkecil: Proses dengan PID terkecil biasanya adalah PID 1, yang merupakan proses induk pertama yang dijalankan oleh kernel saat sistem melakukan booting (seringkali bernama systemd atau init).
 
 2.  Jalankan pstree -p dan temukan proses bash Anda. Proses apa yang menjadi induk (PPID) dari bash tersebut?
-    - Saat Anda menjalankan pstree -p, Anda akan melihat struktur pohon proses.
+    - Saat menjalankan pstree -p, saya melihat struktur pohon proses.
     - Proses induk (PPID) dari bash biasanya adalah proses terminal emulator yang Anda gunakan (seperti gnome-terminal, konsole, atau sshd jika Anda login via SSH). 
 
 3. Bandingkan output ps aux dan ps aux -L. Apa perbedaan yang Anda lihat?
@@ -112,7 +113,7 @@ Kapan Anda memilih SIGKILL daripada SIGTERM?
 1.  Jalankan top di foreground. Apa yang terjadi di terminal?
    <img width="647" height="403" alt="image" src="https://github.com/user-attachments/assets/6361ccef-df93-494e-8bbe-11c6bb535b3d" />
 
-   - Apa yang terjadi: Terminal akan menjadi interaktif dan menampilkan daftar proses yang diperbarui secara real-time. Anda      tidak akan bisa mengetik perintah lain di terminal tersebut selama top masih berjalan karena ia menguasai sesi terminal      (foreground).
+   - Apa yang terjadi: Terminal akan menjadi interaktif dan menampilkan daftar proses yang diperbarui secara real-time. Dan      tidak akan bisa mengetik perintah lain di terminal tersebut selama top masih berjalan karena ia menguasai sesi terminal      (foreground).
 
 2. Tekan Ctrl+Z dan cek statusnya dengan jobs. Kondisi apa yang ditampilkan?
    <img width="392" height="36" alt="image" src="https://github.com/user-attachments/assets/db425650-9d7a-40dc-99e3-589bf6e6fa2e" />
@@ -153,7 +154,7 @@ F6 : <img width="644" height="407" alt="image" src="https://github.com/user-atta
 
 1. <img width="643" height="102" alt="image" src="https://github.com/user-attachments/assets/911ec187-4f74-4e12-8352-45e7eb700564" />
 
-- Jawaban: Proses yang muncul biasanya bervariasi tergantung sistem Anda, namun seringkali merupakan proses sistem seperti systemd, Xorg (jika menggunakan GUI), atau layanan database jika sedang berjalan.
+- Jawaban: Proses yang muncul biasanya bervariasi tergantung sistem kita, namun seringkali merupakan proses sistem seperti systemd, Xorg (jika menggunakan GUI), atau layanan database jika sedang berjalan.
 
 2. <img width="643" height="405" alt="image" src="https://github.com/user-attachments/assets/c5ddcb47-c9ea-4893-a3d3-5362578d2449" />
 
@@ -163,15 +164,88 @@ F6 : <img width="644" height="407" alt="image" src="https://github.com/user-atta
 
 ## 1.8 Latihan
 
-### Latihan 6.A
+### Latihan 6.A (Eksplorasi Proses Sistem) :
 
-Eksplorasi Proses Sistem :
-1. 
+1. Jalankan ps aux –forest dan temukan proses dengan PID 1. Apa nama dan fungsi proses tersebut dalam sistem Linux modern?
+   
+   <img width="643" height="177" alt="image" src="https://github.com/user-attachments/assets/8eaf8370-e203-4767-ac3a-e1b240d57da0" />
 
+   - Nama Proses: Pada sistem Linux modern, proses dengan PID 1 umumnya bernama systemd (atau init pada sistem yang lebih lama).
+   - Fungsi: Proses ini adalah "induk dari semua proses" (ancestor of all processes). Ia adalah proses pertama yang dijalankan oleh kernel saat booting dan bertanggung jawab untuk menginisialisasi sistem, mengelola layanan (services), serta mengadopsi proses yang kehilangan induknya.
 
+2. Hitung berapa proses yang dimiliki oleh user root dan berapa yang dimiliki oleh user Anda. Mengapa root memiliki lebih banyak proses?
 
+   - Menghitung proses milik Root:
+     ```
+     ps -u root --no-headers | wc -l
+     ```
 
+   - Menghitung proses milik User saya:
+     ```
+     ps -u $USER --no-headers | wc -l
+     ```
 
+ <img width="386" height="45" alt="image" src="https://github.com/user-attachments/assets/8385349a-c534-40fd-8724-68c6a0158029" />
 
+3.  Temukan semua proses yang berada dalam kondisi S. Mengapa sebagian besar proses di sistem berada dalam kondisi ini?
 
+```
+ps aux | grep " S "
+```
+
+<img width="489" height="234" alt="image" src="https://github.com/user-attachments/assets/19fc3b5e-9a1e-4e6e-b575-52f5e1b0fe15" />
+
+### Latihan 6.B (Simulasi Manajemen Job) : 
+
+1. Jalankan tiga perintah sleep dengan durasi 100, 200, dan 300 detik di background. Verifikasi ketiganya dengan jobs.
+
+<img width="309" height="90" alt="image" src="https://github.com/user-attachments/assets/81e6e09b-a2fd-4962-a8c9-583e8f6ba540" />
+
+2. Bawa job kedua ke foreground, jeda dengan Ctrl+Z , lalu kembalikan ke background dengan bg.
+
+<img width="389" height="73" alt="image" src="https://github.com/user-attachments/assets/71797bf5-ef2c-4cd6-b9ff-5ff3c7ab8530" />
+
+3. Hentikan job pertama dengan kill %1. Tampilkan kembali daftar job. Berapa job yang tersisa?
+
+<img width="345" height="51" alt="image" src="https://github.com/user-attachments/assets/52b843a5-d476-4b65-b37d-6d6d74740410" />
+
+- *Berapa job yang tersisa?* Setelah menjalankan kill %1, job yang tersisa adalah 2 job (yaitu job nomor 2 dan job nomor 3). Job nomor 1 telah dihentikan oleh sinyal terminate (SIGTERM).
+
+### Latihan 6.C (Prioritas dan Sinyal) : 
+
+1. Jalankan dua proses sleep: satu dengan nice +5 dan satu dengan nice +15. Verifikasi nilai NI keduanya dengan ps.
+
+```
+nice -n 5 sleep 100 &
+
+nice -n 15 sleep 200 &
+
+ps -o pid,ni,cmd | grep sleep
+```
+
+<img width="388" height="74" alt="image" src="https://github.com/user-attachments/assets/db9b39f0-3d08-49e1-bbf3-8c442a6580ba" />
+
+2. Gunakan renice untuk mengubah nice proses pertama menjadi +10. Proses mana yang kini lebih diprioritaskan scheduler?
+
+```
+renice -n 10 -p 1046 (PID)
+```
+
+<img width="378" height="36" alt="image" src="https://github.com/user-attachments/assets/f692158b-8a6b-444c-abce-f376acf7b05c" />
+
+- *Proses mana yang kini lebih diprioritaskan scheduler?* Setelah proses pertama diubah menjadi +10, maka proses pertama tetap lebih diprioritaskan dibandingkan proses kedua yang memiliki nilai +15.
+
+   - Alasan: Dalam sistem Linux, semakin kecil nilai nice, semakin tinggi prioritas yang diberikan oleh scheduler CPU kepada proses tersebut.
+
+3. Kirim SIGSTOP ke salah satu proses, verifikasi kondisi T-nya, lalu kirim SIGCONT. Akhiri semua proses percobaan dengan pkill sleep.
+
+   ```
+   kill -SIGSTOP 1046
+
+   kill -SIGCONT 1046
+
+   pkill sleep
+   ```
+
+   <img width="359" height="79" alt="image" src="https://github.com/user-attachments/assets/0eee177f-342c-431b-868a-bd0366be38f5" />
 
