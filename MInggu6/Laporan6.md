@@ -99,3 +99,78 @@ Kapan Anda memilih SIGKILL daripada SIGTERM?
  - sebaiknya memilih SIGKILL hanya jika proses tersebut "bandel" atau macet dan tidak merespons perintah SIGTERM.
 
 ## Praktikum 6.5 — Manajemen Job Foreground dan Background
+
+1. <img width="627" height="101" alt="image" src="https://github.com/user-attachments/assets/1cb3f677-655d-4f4d-886b-54a0b374777c" />
+
+2. <img width="502" height="57" alt="image" src="https://github.com/user-attachments/assets/2cc00fbf-84be-47b5-a03f-e3c3bbde0e51" />
+
+3. <img width="516" height="59" alt="image" src="https://github.com/user-attachments/assets/11028d8c-447a-4bf3-a83a-52c63891912b" />
+
+### Latihan 6.5
+
+1.  Jalankan top di foreground. Apa yang terjadi di terminal?
+   <img width="647" height="403" alt="image" src="https://github.com/user-attachments/assets/6361ccef-df93-494e-8bbe-11c6bb535b3d" />
+
+   - Apa yang terjadi: Terminal akan menjadi interaktif dan menampilkan daftar proses yang diperbarui secara real-time. Anda      tidak akan bisa mengetik perintah lain di terminal tersebut selama top masih berjalan karena ia menguasai sesi terminal      (foreground).
+
+2. Tekan Ctrl+Z dan cek statusnya dengan jobs. Kondisi apa yang ditampilkan?
+   <img width="392" height="36" alt="image" src="https://github.com/user-attachments/assets/db425650-9d7a-40dc-99e3-589bf6e6fa2e" />
+
+   - Kondisi: Status yang ditampilkan oleh perintah jobs adalah Stopped atau Tersuspensi.
+   - Penjelasan: Pintasan Ctrl+Z digunakan untuk menjeda job yang sedang berjalan di foreground.
+
+3. Pindahkan ke background dengan bg. Apakah top dapat berjalan dengan baik di background? Mengapa?
+   <img width="498" height="46" alt="image" src="https://github.com/user-attachments/assets/b7fb22d2-b248-4d78-bbf9-7b0bc987e745" />
+
+   - Jawaban: Tidak, top tidak dapat berjalan dengan baik di background.
+   - Mengapa: top adalah aplikasi interaktif yang membutuhkan input dan output terminal secara langsung untuk memperbarui        tampilannya. Saat dipindahkan ke background, ia biasanya akan langsung terhenti (stopped) kembali karena menunggu akses      ke terminal yang saat ini tidak ia kuasai.
+
+4. Kembalikan ke foreground dengan fg, lalu keluar dengan q.
+   <img width="646" height="405" alt="image" src="https://github.com/user-attachments/assets/14ebb7fb-4e09-4cd1-9d31-c2287ffe8981" />
+
+## Praktikum 6.6 — Pemantauan Proses
+
+1. <img width="643" height="188" alt="image" src="https://github.com/user-attachments/assets/e72ec5f8-76d8-4322-b87f-4770888fdf1d" />
+
+2.  - M : <img width="647" height="406" alt="image" src="https://github.com/user-attachments/assets/b9f4d256-1922-49bb-8fdb-07c0527cf472" />
+
+- P : <img width="642" height="407" alt="image" src="https://github.com/user-attachments/assets/64fe99a6-6d17-4e11-b480-358f22a1ca46" />
+
+- 1 : <img width="642" height="267" alt="image" src="https://github.com/user-attachments/assets/4ee59c3d-c8d0-40e1-90cc-389afc5cdc32" />
+
+<img width="642" height="404" alt="image" src="https://github.com/user-attachments/assets/a3453fc8-f183-4ad4-8de7-9010b9635c41" />
+
+- u : <img width="647" height="403" alt="image" src="https://github.com/user-attachments/assets/b1fecaed-26b2-4c8f-978f-12a81b437e02" />
+
+3. <img width="387" height="55" alt="image" src="https://github.com/user-attachments/assets/fbc252aa-23e8-450e-aa9a-d0f948c58914" />
+
+<img width="644" height="406" alt="image" src="https://github.com/user-attachments/assets/e68120c3-a4b0-4bb2-a565-6fc3559df7e2" />
+
+F6 : <img width="644" height="407" alt="image" src="https://github.com/user-attachments/assets/160f4990-9571-404c-8942-1bb4d8e3c352" />
+
+### Latihan 6.6
+
+1. <img width="643" height="102" alt="image" src="https://github.com/user-attachments/assets/911ec187-4f74-4e12-8352-45e7eb700564" />
+
+- Jawaban: Proses yang muncul biasanya bervariasi tergantung sistem Anda, namun seringkali merupakan proses sistem seperti systemd, Xorg (jika menggunakan GUI), atau layanan database jika sedang berjalan.
+
+2. <img width="643" height="405" alt="image" src="https://github.com/user-attachments/assets/c5ddcb47-c9ea-4893-a3d3-5362578d2449" />
+
+- 1 : <img width="648" height="409" alt="image" src="https://github.com/user-attachments/assets/ed1c7696-a5f5-4d23-8779-4874f67e6264" />
+
+3. <img width="646" height="406" alt="image" src="https://github.com/user-attachments/assets/3026c369-53a6-4fda-bea2-0f934db5e9ce" />
+
+## 1.8 Latihan
+
+### Latihan 6.A
+
+Eksplorasi Proses Sistem :
+1. 
+
+
+
+
+
+
+
+
