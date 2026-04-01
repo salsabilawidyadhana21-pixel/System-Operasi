@@ -8,9 +8,10 @@
 
 1. ps aux  :<img width="650" height="412" alt="image" src="https://github.com/user-attachments/assets/16801297-d3a7-4478-b58e-ba606cf8f8b3" />
 2. ps aux -L : <img width="647" height="407" alt="image" src="https://github.com/user-attachments/assets/02487fbd-7b5c-4796-9494-5417d0239808" />
-3. echo $$
 
-ps -p $$ -f : <img width="648" height="53" alt="image" src="https://github.com/user-attachments/assets/0feab389-7baa-4f3f-ac85-faa81dff2df8" />
+3. echo $$ : <img width="612" height="97" alt="Cuplikan layar 2026-04-01 071953" src="https://github.com/user-attachments/assets/23763364-ef9a-409d-b52e-f34e9243ef9f" />
+
+   ps -p $$ -f : <img width="612" height="97" alt="Cuplikan layar 2026-04-01 071953" src="https://github.com/user-attachments/assets/30b0fc77-4464-4730-84bd-357718e6604e" />
 
 4. pstree -p : <img width="644" height="271" alt="image" src="https://github.com/user-attachments/assets/9fee86d5-7b85-4ea0-8c51-ca0b640dd40a" />
 
