@@ -56,7 +56,7 @@ code masing-masing. Pola apa yang Anda temukan?
 - Kesimpulan: Pola ini digunakan dalam scripting untuk mendeteksi status sukses atau gagalnya suatu instruksi secara otomatis.
 
 ## Praktikum 6.3 — Mengatur Prioritas Proses
-<img width="646" height="118" alt="image" src="https://github.com/user-attachments/assets/bcada4c7-4949-4f7a-8360-0576d463cb81" />
+<img width="461" height="102" alt="image" src="https://github.com/user-attachments/assets/1aaebd55-b500-4913-b005-9393ede267b4" />
 
 ### Latihan 6.3
 
