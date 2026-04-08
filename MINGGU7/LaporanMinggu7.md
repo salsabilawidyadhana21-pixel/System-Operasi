@@ -4,3 +4,28 @@
 <h4>NIM : 254107020200<h4>
 <h4>Kelas : TI-1H<h4>
 
+## Tugas Praktikum
+
+### Tugas Praktikum 1 — Toolkit Bash Administrator Pribadi
+
+
+##### Langkah-langkah Eksekusi:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
