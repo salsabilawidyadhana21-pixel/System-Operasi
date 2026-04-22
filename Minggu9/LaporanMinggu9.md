@@ -123,6 +123,7 @@ esac
 
 echo "Hasil: $HASIL"
 ```
+<img width="401" height="224" alt="image" src="https://github.com/user-attachments/assets/4715076b-b893-4e01-acdf-9fb9691a6b8f" />
 
 ## Praktikum 7.3  Script Grading dan Menu Interaktif
 ```
@@ -379,6 +380,7 @@ if [ ! -d "$DIREKTORI" ]; then
 fi
 UKURAN=$(du -sm "$DIREKTORI" | cut -f1) 
 ```
+<img width="401" height="280" alt="image" src="https://github.com/user-attachments/assets/de82dfd1-b815-4b72-8503-e1194c4ab4fe" />
 
 ## Tugas 1 Script Absensi Kelas
 ```
@@ -410,7 +412,7 @@ fi
 echo "[$(date +%H:%M)] $1 - $2" >> "$FILE_ABSEN"
 echo "Data berhasil dicatat."
 ```
-
+<img width="416" height="332" alt="image" src="https://github.com/user-attachments/assets/6fdd66a0-133c-4ef4-af51-220a2b1ea2cf" />
 
 ## Tugas 2 Script Health Check Sistem
 ```
@@ -446,3 +448,4 @@ do_check() {
 # Jalankan dan simpan hasil 
 do_check | tee -a "$LOG_FILE"
 ```
+<img width="289" height="404" alt="image" src="https://github.com/user-attachments/assets/de71ad94-7fad-462c-a66a-fb48ad095b17" />
