@@ -37,9 +37,7 @@ gunakan tee yang sudah dipelajari di bab sebelumnya.
 
 ```
 #!/bin/bash
-
 FILE="laporan-$(date +%F).txt"
-
 {
 echo "================================"
 echo " LAPORAN SISTEM"
@@ -94,16 +92,13 @@ operasi, dan validasi jika argumen tidak lengkap.
 
 ```
 #!/bin/bash
-
 if [ $# -ne 3 ]; then
     echo "Penggunaan: $0 <angka1> <operator> <angka2>"
     exit 1
 fi
-
 A=$1
 OP=$2
 B=$3
-
 case $OP in
     +) HASIL=$((A + B)) ;;
     -) HASIL=$((A - B)) ;;
@@ -120,7 +115,6 @@ case $OP in
         exit 1
         ;;
 esac
-
 echo "Hasil: $HASIL"
 ```
 <img width="401" height="224" alt="image" src="https://github.com/user-attachments/assets/4715076b-b893-4e01-acdf-9fb9691a6b8f" />
@@ -385,7 +379,6 @@ UKURAN=$(du -sm "$DIREKTORI" | cut -f1)
 ## Tugas 1 Script Absensi Kelas
 ```
 #!/bin/bash
-# Penggunaan: ./absensi.sh <nama> <status> atau ./absensi.sh -r
 FILE_ABSEN="../logs/absensi-$(date +%Y-%m-%d).txt" 
 show_recap() { 
     if [ ! -f "$FILE_ABSEN" ]; then echo "Belum ada data."; exit 0; fi
@@ -403,12 +396,10 @@ while getopts "rh" OPSI; do
     esac
 done
 shift $((OPTIND - 1)) 
-# Validasi input
 if [ $# -lt 2 ]; then
     echo "Error: Nama dan status wajib diisi."
     exit 1
 fi
-# Simpan entri 
 echo "[$(date +%H:%M)] $1 - $2" >> "$FILE_ABSEN"
 echo "Data berhasil dicatat."
 ```
@@ -417,35 +408,30 @@ echo "Data berhasil dicatat."
 ## Tugas 2 Script Health Check Sistem
 ```
 #!/bin/bash
-set -euo pipefail 
-# Konfigurasi 
-BATAS_DISK=80 
-LOG_FILE="../logs/healthcheck-$(date +%Y-%m-%d).log" 
-cleanup() { 
-    echo "[$(date +%T)] Pemeriksaan selesai."
+set -euo pipefail # Fondasi script andal
+BATAS=${1:-80} # Default 80% jika tidak ada argumen 
+LOG_FILE="healthcheck-$(date +%Y-%m-%d).log"
+cleanup() {
+    echo "[$(date '+%T')] Pemeriksaan selesai."
 }
-trap cleanup EXIT 
-while getopts "t:" OPSI; do 
-    case $OPSI in
-        t) BATAS_DISK=$OPTARG ;;
-    esac
-done
-do_check() {
-    echo "=== SYSTEM HEALTH CHECK ==="
-    echo "Waktu    : $(date '+%F %T')" 
-    echo "Hostname : $(hostname)" 
-    echo "Uptime   : $(uptime -p)" 
-    echo "--- Penggunaan Disk ---"
-    df -h | grep '^/dev/' | while read -r line; do 
-        usage=$(echo "$line" | awk '{print $5}' | tr -d '%')
-        p_mount=$(echo "$line" | awk '{print $6}')
-        echo "$p_mount: $usage% terpakai"
-        if [ "$usage" -gt "$BATAS_DISK" ]; then 
-            echo ">> PERINGATAN: Penggunaan disk pada $p_mount melebihi batas!"
+trap cleanup EXIT # Memastikan cleanup berjalan 
+run_check() {
+    echo "==== SYSTEM HEALTH CHECK ===="
+    echo "Waktu    : $(date '+%Y-%m-%d %H:%M:%S')"
+    echo "Hostname : $(hostname)"
+    echo "Uptime   : $(uptime -p)"
+    echo "----------------------------"
+    echo "PENGGUNAAN DISK:"
+    df -h | grep '^/dev/' | while read line; do
+        usage=$(echo $line | awk '{print $5}' | tr -d '%')
+        part=$(echo $line | awk '{print $6}')
+        if [ "$usage" -gt "$BATAS" ]; then
+            echo "!!! PERINGATAN: Partisi $part mencapai ${usage}% !!!"
         fi
+        echo "$line"
     done
+    echo "=============================="
 }
-# Jalankan dan simpan hasil 
-do_check | tee -a "$LOG_FILE"
+run_check | tee -a "$LOG_FILE"
 ```
 <img width="289" height="404" alt="image" src="https://github.com/user-attachments/assets/de71ad94-7fad-462c-a66a-fb48ad095b17" />
