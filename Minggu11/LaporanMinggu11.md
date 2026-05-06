@@ -275,4 +275,134 @@ sudo grep " userA " / var / log / auth . log | tail -10
 ### Tantangan
 Tambahkan satu aturan baru agar userA boleh menjalankan /bin/systemctl restart ssh tetapi tidak boleh
 menjalankan reboot.
+<img width="666" height="137" alt="image" src="https://github.com/user-attachments/assets/e3a842f7-9ca4-49c4-b349-0907c773bdf9" />
+
+## Praktikum 9.5 — Disk Quota
+```
+sudo dd if =/ dev / zero of =/ tmp / quota - test . img bs =1 M count =100
+sudo mkfs . ext4 / tmp / quota - test . img
+sudo mkdir -p / mnt / quota - test
+sudo mount -o loop , usrquota , grpquota / tmp / quota - test . img / mnt /
+quota - test
+sudo quotacheck - cug / mnt / quota - test
+sudo quotaon -v / mnt / quota - test
+sudo repquota / mnt / quota - test
+sudo edquota -u userA
+# contoh : soft block 5120 , hard block 10240
+sudo repquota / mnt / quota - test
+sudo quotaoff / mnt / quota - test
+sudo umount / mnt / quota - test
+sudo rm / tmp / quota - test . img
+```
+<img width="960" height="600" alt="image" src="https://github.com/user-attachments/assets/f1d093c1-214c-442e-ad49-f6f860b6b44b" />
+
+### Analisis
+1. Apa perbedaan soft limit dan hard limit saat quota mulai terlampaui?
+   Jawab:
+   - Soft Limit (Batas Toleransi): Adalah batas penyimpanan awal yang bersifat sebagai peringatan (warning). Saat pengguna menggunakan ruang penyimpanan melebihi batas ini (misalnya lewat dari 50MB), sistem Linux masih mengizinkan pengguna menulis data atau membuat file baru. Namun, sistem akan langsung memulai perhitungan mundur waktu tenggang (grace period, biasanya default 7 hari) agar pengguna segera membersihkan file mereka.
+
+  - Hard Limit (Batas Mutlak): Adalah batas absolut penyimpanan yang tidak bisa ditawar (misalnya 60MB). Jika pengguna mencoba menulis data hingga menyentuh atau melampaui batas hard limit ini, sistem akan langsung memblokir proses tersebut secara mutlak. Pengguna akan menemui error berupa Disk quota exceeded dan sisa data yang sedang ditulis akan gagal tersimpan.
+2. Mengapa praktikum ini memakai loopback filesystem, bukan langsung /home/?
+Jawab:
+- Keamanan Data Utama: Mengonfigurasi dan menguji kuota langsung pada partisi utama seperti /home atau / (root) berisiko tinggi bagi pemula. Jika terjadi kesalahan ketik atau sistem terkunci karena kuota habis, layanan sistem penting bisa crash atau user utama tidak bisa login.
+
+- Isolasi Lingkungan Uji Coba: Dengan membuat file virtual image (.img) lalu melakukan mount sebagai loopback device (/dev/loop0), kita menciptakan sebuah "flashdisk virtual" terisolasi di dalam folder /mnt/quota-test.
+
+- Kemudahan Praktikum: Kita tidak perlu melakukan repartitioning (membagi ulang kapasitas harddisk asli) atau melakukan reboot server. Jika praktikum selesai, kita tinggal melakukan umount dan menghapus file image-nya tanpa meninggalkan dampak apa pun pada partisi sistem operasi utama.
+3. Dari output repquota, informasi apa yang menunjukkan quota sudah aktif?
+  Jawab:
+  - Munculnya Daftar Akun (seperti userA)
+  - Kolom soft dan hard Tidak Bernilai 0
+  - Kolom Status used dan grace
+
+### Tantangan
+Coba atur quota baru untuk userA dengan batas inode yang sangat kecil, kemudian jelaskan kapan pembatasan
+inode lebih penting daripada pembatasan block.
+<img width="648" height="131" alt="image" src="https://github.com/user-attachments/assets/bcb65eb4-5cb5-42f9-b049-1b61ac85eb66" />
+
+##  Latihan
+
+### Latihan Latihan 9.A — Audit dan Kolaborasi
+1. Temukan file SUID aktif dengan find / -perm -4000 -type f 2>/dev/null, lalu jelaskan
+tiga file yang Anda kenali beserta alasannya.
+2. Cari direktori world-writable dan tentukan mana yang valid dan mana yang berisiko.
+3. Rancang konfigurasi permission standar dan ACL untuk direktori proyek /srv/webapp/ agar
+group webapp-team dapat menulis, user deploy hanya membaca, dan file baru selalu mewarisi
+group proyek.
+```
+sudo groupadd webapp-team
+sudo useradd -m -s /bin/bash deploy
+sudo chown :webapp-team /srv/webapp/
+sudo chmod 2750 /srv/webapp/
+sudo setfacl -m g:webapp-team:rwx /srv/webapp/
+sudo setfacl -m u:deploy:rx /srv/webapp/
+sudo setfacl -m d:g:webapp-team:rwx /srv/webapp/
+sudo setfacl -m d:u:deploy:rx /srv/webapp/
+getfacl /srv/webapp/
+```
+<img width="652" height="398" alt="image" src="https://github.com/user-attachments/assets/ea22cb33-c941-424b-af08-3b08dba8b1f0" />
+
+### Latihan Latihan 9.B — Kebijakan Akun dan Quota
+Tuliskan langkah untuk membuat user intern, menambahkannya ke group labgroup, memaksa pergantian password tiap 45 hari (warning 7 hari), memberi izin sudo hanya untuk systemctl status, dan
+menetapkan quota ruang serta inode sederhana pada /home/.
+
+#### Jawab:
+##### Langkah 1 Membuat User Intern dan Menambahkan ke Group Labgroup
+```
+# Membuat group labgroup
+sudo groupadd labgroup
+
+# Membuat user intern dan langsung memasukkannya ke group labgroup
+sudo useradd -m -g labgroup -s /bin/bash intern
+
+# Setel password awal untuk user intern
+sudo passwd intern
+```
+<img width="655" height="141" alt="image" src="https://github.com/user-attachments/assets/34a23dc4-619d-4a17-99fd-caf21b54723c" />
+
+##### Langkah 2: Mengonfigurasi Kebijakan Password (Umur 45 Hari & Warning 7 Hari)
+```
+# -M 45: Masa aktif maksimal password 45 hari
+# -W 7: Warning dimulai 7 hari sebelum hangus
+sudo chage -M 45 -W 7 intern
+
+# Verifikasi hasil kebijakan password intern
+sudo chage -l intern
+```
+<img width="540" height="144" alt="image" src="https://github.com/user-attachments/assets/78e663b5-d3f6-4111-86cd-f319ff1dc073" />
+
+##### Langkah 3: Memberikan Izin Sudo Terbatas (systemctl status)
+```
+# Buka file sudoers khusus untuk intern
+sudo visudo -f /etc/sudoers.d/lab-intern
+intern   ALL=(ALL:ALL) /usr/bin/systemctl status
+```
+<img width="593" height="17" alt="image" src="https://github.com/user-attachments/assets/67a0cdd9-196e-4d5a-8da3-f6c3c3a17553" />
+
+##### Langkah 4: Menetapkan Quota Ruang (Blocks) dan Inodes pada /home
+```
+# 1. Edit fstab untuk mengaktifkan quota di partisi /home
+sudo nano /etc/fstab
+
+# [DI DALAM NANO] Cari baris mount /home, tambahkan opsi usrquota
+# Contoh: UUID=xxxx... /home ext4 defaults,usrquota 0 2
+
+# 2. Terapkan opsi fstab baru tanpa reboot
+sudo mount -o remount /home
+
+# 3. Buat database kuota dan aktifkan layanannya di /home
+sudo quotacheck -cum /home
+sudo quotaon -v /home
+
+# 4. Atur kuota sederhana untuk user intern (Misal: Soft Block 50MB, Hard Block 60MB, Soft Inode 100, Hard Inode 120)
+sudo edquota -u intern
+```
+<img width="503" height="93" alt="image" src="https://github.com/user-attachments/assets/ca1bdd5a-c3c8-4896-9eef-e5d10bc5ab59" />
+
+##### Langkah 5: Verifikasi
+```
+sudo repquota -s /
+```
+<img width="626" height="356" alt="image" src="https://github.com/user-attachments/assets/43792bc4-d7af-47cf-be86-c9420d4d8136" />
+
 
