@@ -271,3 +271,8 @@ sudo grep " userA " / var / log / auth . log | tail -10
   - Perintah yang Dieksekusi (COMMAND): Path lengkap beserta argumen/perintah spesifik yang dijalankan (misalnya: COMMAND=/usr/bin/apt update).
 
   - Status Keberhasilan: Keterangan apakah perintah tersebut sukses dijalankan, atau gagal karena salah password (authentication failure), atau diblokir karena user tidak terdaftar di sudoers (user not in sudoers).
+
+### Tantangan
+Tambahkan satu aturan baru agar userA boleh menjalankan /bin/systemctl restart ssh tetapi tidak boleh
+menjalankan reboot.
+
