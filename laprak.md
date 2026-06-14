@@ -1,6 +1,6 @@
 # Laporan Remastering Distribusi Linux Berbasis Ubuntu
 
-**Nama**: Salsabila Widyadhana
+**Nama**: Salsabilla
 **NIM**: 254107020200
 **Mata Kuliah**: Sistem Operasi
 
@@ -8,7 +8,7 @@
 
 ## 1. Pendahuluan
 
-Pada proyek ini, dilakukan proses _remastering_ terhadap distribusi Linux berbasis Ubuntu menggunakan tool **Cubic (Custom Ubuntu ISO Creator)**. Proses remastering meliputi penambahan aplikasi kustom, perubahan tampilan antarmuka, serta pembuatan file ISO baru hasil modifikasi.
+Pada tugas ini, dilakukan proses _remastering_ terhadap distribusi Linux berbasis Ubuntu menggunakan tool **Cubic (Custom Ubuntu ISO Creator)**. Proses remastering meliputi penambahan aplikasi kustom, perubahan tampilan antarmuka, serta pembuatan file ISO baru hasil modifikasi.
 
 ## 2. Persiapan Sistem Dasar
 
