@@ -1,7 +1,9 @@
 # Laporan Remastering Distribusi Linux Berbasis Ubuntu
 
 **Nama**: Salsabila Widyadhana
+
 **NIM**: 254107020200
+
 **Mata Kuliah**: Sistem Operasi
 
 ---
